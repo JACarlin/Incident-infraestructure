@@ -30,7 +30,7 @@ services:
  
   incident-api:
       image: jacarlint/mono-map:latest
-      container_name: monoAPI
+      container_name: mono-map
       expose:
         - "3000"
       depends_on:
