@@ -14,10 +14,8 @@ services:
       - /volumes/nginx/vhostd:/etc/nginx/vhost.d
       - /volumes/nginx/html:/usr/share/nginx/html:rw
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    depends_on:
-      - monkeycase-api
-      - lets-encrypt
-
+ 
+ 
   lets-encrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: 'Lets-Encrypt'
@@ -29,27 +27,27 @@ services:
       - /volumes/nginx/vhostd:/etc/nginx/vhost.d
       - /volumes/nginx/html:/usr/share/nginx/html:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
-
+ 
   monkeycase-api:
-    image: jacarlint/mono-map:latest
-    container_name: monkeycase-api
-    expose:
-      - "3000"
-    depends_on:
-      - mongo
-    environment:
-      MONGO_URL: ${MONGO_URL}
-      PORT: ${PORT}
-      MONGO_DB: ${MONGO_DB}
-      MAILER_ACCESS_TOKEN: ${MAILER_ACCESS_TOKEN}
-      MAILER_SERVICE: ${MAILER_SERVICE}
-      MAILER_EMAIL: ${MAILER_EMAIL}
-      MAPBOX_ACCESS_TOKEN: ${MAPBOX_ACCESS_TOKEN}
-      LETSENCRYPT_HOST: ${DOMAIN}
-      LETSENCRYPT_EMAIL: ${MAILER_EMAIL}
-      VIRTUAL_HOST: ${DOMAIN}
-      VIRTUAL_PATH: /
-
+      image: jacarlint/mono-map:latest
+      container_name: monkeycase-api
+      expose:
+        - "3000"
+      depends_on:
+        - mongo
+      environment:
+        MONGO_URL: ${MONGO_URL}
+        PORT: ${PORT}
+        MONGO_DB: ${MONGO_DB}
+        MAILER_ACCESS_TOKEN: ${MAILER_ACCESS_TOKEN}
+        MAILER_SERVICE: ${MAILER_SERVICE}
+        MAILER_EMAIL: ${MAILER_EMAIL}
+        MAPBOX_ACCESS_TOKEN: ${MAPBOX_ACCESS_TOKEN}
+        LETSENCRYPT_HOST: ${DOMAIN}
+        LETSENCRYPT_EMAIL: ${MAILER_EMAIL}
+        VIRTUAL_HOST: ${DOMAIN}
+        VIRTUAL_PATH: /
+  
   mongo:
     image: mongo:latest
     container_name: mongo
