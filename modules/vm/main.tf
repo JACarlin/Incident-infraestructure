@@ -18,7 +18,7 @@ resource "azurerm_subnet" "IN_SUBNET" {
 }
 
 resource "azurerm_network_security_group" "IN_SG" {
-  name                = "IN-Security-Rules-Juan"
+  name                = var.security_group_name
   location            = var.location
   resource_group_name = azurerm_resource_group.IN_RG.name
 
@@ -57,11 +57,13 @@ resource "azurerm_network_security_group" "IN_SG" {
   }
 }
 
+# Crear asociacion entre subnet y security groups
 resource "azurerm_subnet_network_security_group_association" "IN_SGA" {
   subnet_id                 = azurerm_subnet.IN_SUBNET.id
   network_security_group_id = azurerm_network_security_group.IN_SG.id
 }
 
+# Crear IP Publica
 resource "azurerm_public_ip" "IN_IP" {
   name                = var.ip_name
   resource_group_name = azurerm_resource_group.IN_RG.name
@@ -75,7 +77,7 @@ resource "azurerm_network_interface" "IN_NIC" {
   resource_group_name = azurerm_resource_group.IN_RG.name
 
   ip_configuration {
-    name                          = "Internal"
+    name                          = "internal"
     subnet_id                     = azurerm_subnet.IN_SUBNET.id
     public_ip_address_id          = azurerm_public_ip.IN_IP.id
     private_ip_address_allocation = "Dynamic"
@@ -143,11 +145,11 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
  
      ]
      connection {
-      
+
       type = "ssh"
       user = "${var.admin_username}"
       private_key = file("./keys/711incident_server")
-      host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
+      host = self.public_ip_address
     }
   }
 }
@@ -163,11 +165,10 @@ resource "null_resource" "init_docker" {
     inline = [ "sudo su -c 'docker-compose up -d'" ]
   }
   connection {
-      
+
       type = "ssh"
-      user = "${var.admin_username}"
+      user = "adminuser"
       private_key = file("./keys/711incident_server")
       host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
     }
-  
 }
