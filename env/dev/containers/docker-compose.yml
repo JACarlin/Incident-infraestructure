@@ -29,8 +29,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
  
   incident-api:
-      image: juanfr97/712-incident-api:latest
-      container_name: incident-api
+      image: jacarlint/mono-map:latest
+      container_name: monoAPI
       expose:
         - "3000"
       depends_on:

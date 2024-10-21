@@ -57,13 +57,11 @@ resource "azurerm_network_security_group" "IN_SG" {
   }
 }
 
-# Crear asociacion entre subnet y security groups
 resource "azurerm_subnet_network_security_group_association" "IN_SGA" {
   subnet_id                 = azurerm_subnet.IN_SUBNET.id
   network_security_group_id = azurerm_network_security_group.IN_SG.id
 }
 
-# Crear IP Publica
 resource "azurerm_public_ip" "IN_IP" {
   name                = var.ip_name
   resource_group_name = azurerm_resource_group.IN_RG.name
