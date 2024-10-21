@@ -154,7 +154,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
 
 resource "time_sleep" "wait_120_seconds" {
   depends_on = [ azurerm_linux_virtual_machine.IN_VM ]
-  create_duration = "120s"
+  create_duration = "300s"
 }
 
 resource "null_resource" "init_docker" {

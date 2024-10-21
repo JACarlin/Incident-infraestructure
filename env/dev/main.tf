@@ -27,4 +27,4 @@ resource "azurerm_resource_group" "examen" {
   name = "carlin-resource"
   location = "eastus2"
 }
-//aaspfosgdihañgskgds
+//porfavor jala para que el jefe de grupo se vaya a dormir
