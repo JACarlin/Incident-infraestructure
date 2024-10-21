@@ -7,7 +7,7 @@ module "dev_vm" {
   vnet_name = "IN-VNET-Carlin-Dev"
   subnet_name = "IN-SUBNET-Carlin-Dev"
   ip_name = "IN-IP-Carlin-Dev"
-  location = "eastus2"
+  location = "westus2"
   admin_username = "adminuser"
   nic_name = "IN-NIC-Carlin-Dev"
   vm_name = "IN-Server-Carlin-Dev"
@@ -23,8 +23,5 @@ module "dev_vm" {
   MONGO_URL = var.MONGO_URL
 }
 
-resource "azurerm_resource_group" "examen" {
-  name = "carlin-resource"
-  location = "eastus2"
-}
+
 // mp.servequake.com
