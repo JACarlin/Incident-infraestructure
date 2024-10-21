@@ -123,7 +123,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
 
   provisioner "remote-exec" {
     inline = [ 
-        "sudo su -c 'mkdir -p /home/${var.admin_username}'",
+      "sudo su -c 'mkdir -p /home/${var.admin_username}'",
       "sudo su -c 'mkdir -p /volumes/nginx/html'",
       "sudo su -c 'mkdir -p /volumes/nginx/certs'",
       "sudo su -c 'mkdir -p /volumes/nginx/vhostd'",
