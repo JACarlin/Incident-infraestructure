@@ -7,7 +7,7 @@ module "dev_vm" {
   vnet_name = "IN-VNET-Carlin-Dev"
   subnet_name = "IN-SUBNET-Carlin-Dev"
   ip_name = "IN-IP-Carlin-Dev"
-  location = "eastus2"
+  location = "eastus"
   admin_username = "adminuser"
   nic_name = "IN-NIC-Carlin-Dev"
   vm_name = "IN-Server-Carlin-Dev"
