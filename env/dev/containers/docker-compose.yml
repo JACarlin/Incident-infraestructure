@@ -28,9 +28,9 @@ services:
       - /volumes/nginx/html:/usr/share/nginx/html:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
  
-  mono-map:
+  monkeycase-api:
       image: idromero/monkeycase-api:latest
-      container_name: mono-map
+      container_name: monkeycase-api
       expose:
         - "3000"
       depends_on:
