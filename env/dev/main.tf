@@ -27,3 +27,6 @@ resource "azurerm_resource_group" "examen" {
   name = "carlin-resource"
   location = "eastus2"
 }
+output "MAIL_SECRET_KEY" {
+  value = var.MAIL_SECRET_KEY
+}
