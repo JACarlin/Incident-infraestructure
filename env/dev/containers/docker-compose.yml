@@ -28,7 +28,7 @@ services:
       - /volumes/nginx/html:/usr/share/nginx/html:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
  
-  incident-api:
+  mono-map:
       image: jacarlint/mono-map:latest
       container_name: mono-map
       expose:
